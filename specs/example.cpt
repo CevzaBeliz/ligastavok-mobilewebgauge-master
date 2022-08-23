@@ -1,0 +1,397 @@
+Created by testinium on 9.06.2022
+
+This is a concept file with following syntax for each concept.
+
+This is a concept file with following syntax for each concept.
+# Go to Main Page For Koton MobileSite
+* Go to "https://m.koton.com/tr/" address
+* Wait "5" seconds
+* Wait for element then click "kotonLogin"
+//* Click element by "allowTheNotification" if exist
+//* Click to element "kotonTest"
+* Wait "5" seconds
+//* Wait for element then click "allowTheNotification"
+//* Wait for element then click "allowTheNotification"
+//* Click element by "closeTheCookie" if exist
+//* Click element by "closeAppMobileRedirect" if exist
+
+# Go to Test Env
+* Go to "https://m-test.texsportbet.com/en-gb" address
+* Wait "2" seconds
+//* Click to element "stayInMobil"
+* Check if element "loginButton" exists
+* Check if element "registerButton" exists
+* Wait "2" seconds
+//* Elementine tıkla "gotItButton"
+
+# Go to QA Env
+* Go to "https://m-test.texsportbet.com/en-gb" address
+* Check if element "loginButton" exists
+* Check if element "registerButton" exists
+* Wait "2" seconds
+//* Elementine tıkla "gotItButton"
+* Click to element "loginButton"
+* Write value "beliztest" to element "loginUserNameArea"
+* Write value "password1" to element "loginPasswordArea"
+* Click to element "loginButtonArea"
+
+# Go to register page
+*Wait "2" seconds
+* Click to element "registerButton"
+//* Wait for element then click "registerButton"
+* Wait "2" seconds
+
+# Sign Up
+//* Find element by "firstNameInput" clear and send keys "test"
+* Write random value to element "firstNameInput" starting with "test"
+* Write random value to element "lastNameInput" starting with "testinium"
+//* Debug Step
+//* Find element by "birthdayField" and send value
+* Send value to the defined element
+//* Date picker from Android Calendar "10.10.1990" for date's field "birthdayField"
+//* Write random date to element "birthdayField"
+* Click to element "nextBtn"
+* Find element by "email" clear and send keys random email
+* Write value "qwerty123" to element "registerPassword"
+* Write value "qwerty123" to element "registerPasswordRepeat"
+* Wait "2" seconds
+* Pick the one of elements "phoneNumberCodeOptions" randomly
+* Wait "2" seconds
+//* Wait for element then click "phoneNumber"
+* Send number to the defined element
+//* Generate to random phonenumber
+* Wait "2" seconds
+* Pick the one of elements "countryOptions" randomly
+* Wait "2" seconds
+* Pick the one of elements "currencyOptions" randomly
+* Wait "2" seconds
+//* scroll to the "<key>" area
+//* write the phone number to "mobilephone" the element
+* Wait for element then click "nextBtn"
+* Wait for element then click "acceptCheckBox"
+* Wait for element then click "saveButton"
+
+# Verify that the registration is done
+* Find element by "registrationLabel" and verify that text of element equals to "Registration completed!"
+
+# Verify that the site is proceeded to Login Page
+* Wait "10" seconds
+* Get current url and verify that the url is the same with the "https://m-test.texsportbet.com/en-gb/Account/Login"
+
+
+# Go to Forgot Password Page
+* Click element by "hamburgerMenu" if exist
+* Wait "2" seconds
+* scroll to the element "lostPasswordPage" be visible
+* Wait "2" seconds
+* Click to element "lostPasswordPage"
+* Wait "2" seconds
+* "beliztest" textini "logonName" elemente yaz
+* Click to element "NextButton"
+* "7" textini "lostPasswordSecurityQuestion" elemente yaz
+* Click to element "NextButton"
+* Wait "2" seconds
+* Check if element "welcomeLabel" contains text "Lost"
+* Wait "2" seconds
+* Check if element "lostPasswordSendMailPage" contains text "the password was sent to your stored mail"
+* Click to element "NextButton"
+
+# Login with <username> and <password>
+* Elementine tıkla "loginButton"
+* <username> textini "loginUserNameArea" elemente yaz
+* <password> textini "loginPasswordArea" elemente yaz
+* Elementine tıkla "loginButtonArea"
+* Wait "2" seconds
+* Find element by "assertLoginName" and text contains any value
+//* "assertLoginName" element on the page contains "Beliz" the value
+
+# ReLogin with right <password>
+* <password> textini "loginPasswordArea" elemente yaz
+* Elementine tıkla "loginButtonArea"
+* Wait "2" seconds
+* Find element by "assertLoginName" and text contains any value
+
+
+# Go to Change Password Page
+* Wait "2" seconds
+* Click to element "hamburgerMenu"
+//* Click to element "changeLanguage"
+//* Click to element "englishButtoninLanguagePage"
+//* Click to element "hamburgerMenu"
+//* Click element by "hamburgerMenu" if exist
+* Click to element "profilePage"
+* Wait "2" seconds
+* Click to element "changePasswordPage"
+
+# Change Password write <currentPass> and <newPass> and <repeatNewPass>
+* <currentPass> textini "currentPass" elemente yaz
+* <newPass> textini "newPass" elemente yaz
+* <repeatNewPass> textini "repeatNewPass" elemente yaz
+* Elementine tıkla "saveButton"
+* Wait "2" seconds
+* Find element by "assersionOfSaveFunction" and verify that text of element equals to "Your new password has been set for your account."
+* Wait "2" seconds
+
+# LogOut
+* Click element by "hamburgerMenu" if exist
+* Wait "2" seconds
+* scroll to the element "logoutButton" be visible
+* Wait "2" seconds
+* Click to element "logoutButton"
+
+# Wrong Password Entry
+* Element var mı kontrol et "loginButton"
+* Elementine tıkla "loginButton"
+* "beliztest" textini "loginUserNameArea" elemente yaz
+* "password1" textini "loginPasswordArea" elemente yaz
+* Elementine tıkla "loginButtonArea"
+* Wait "2" seconds
+* Element var mı kontrol et "loginErrorMessage"
+* Wait "2" seconds
+
+# Choose Bet
+* Wait "3" seconds
+//* Pick the one of elements "firstBetOptionOfLastMinuteMatches" randomly
+//* scroll to the element "lastMatchOfLastMinuteMatches" be visible
+* scroll to "100" and "0"
+* Wait "2" seconds
+* "firstBetOptionOfLastMinuteMatches" listesinden bir element seç ve "elementvalue" olarak sakla
+* Wait "3" seconds
+
+# Go to The Bet Slip Page
+* Wait for element then click "cicleOfSelectedMathces"
+
+
+# Accept Bet
+* "2" saniye bekle
+* "slipOddValue" li elementi bul ve değeri "elementvalue" saklanan değeri içeriyor mu kontrol et
+* Find element by "selectedMatchInBetSlipPage" and save text "selectedmatch"
+//* seçilmiş "slipOddValue"'li elementin text değerini "oddValue" olarak sakla
+* Wait "2" seconds
+//* "slipOddValue" li elementi bul ve değerini "oddValue" saklanan degeri ile "firstBetOptionOfLastMinuteMatches" li elementi bul ve değerini "elementvalue" saklanan degeri kıyasla
+* Click to element "StakeValue"
+//* Click to element "enterStakeAmount"
+* Wait "2" seconds
+* Pick the one of elements "numList" randomly
+* Wait "2" seconds
+//* Write int value "35" to element "enterStakeAmount"
+//* Write value "35.00 CLP" to element "enterStakeAmount"
+* Click to element "okButton"
+* Wait "2" seconds
+* Click to element "submitBetSlip"
+* Wait "2" seconds
+* Find element by "popNotification" and verify that text of element equals to "Your bet has been booked!"
+
+# Return to Home Page After Placed Bet
+* Click to element "returnToHome"
+
+# Bet Detail View
+* Click to element "hamburgerMenu"
+* Wait "2" seconds
+* Click to element "betsPage"
+* Wait "2" seconds
+* Wait for element then click "betsPageAllOption"
+* Wait for element then click "betsPageAllOptionFirstBetToClose"
+* Wait for element then click "betsPageAllOptionFirstBetToOpen"
+* Wait "2" seconds
+* Find element by "placedMatchInBetsPage" and compare saved key "selectedmatch" contains the text of element
+
+#go to bet and check the first bet
+* Click to element "hamburgerMenu"
+* Wait "2" seconds
+* Click to element "betsPage"
+* Wait "2" seconds
+* Wait for element then click "betsPageAllOption"
+* Wait "2" seconds
+* Wait for element then click "betsPageAllOptionFirstBetToClose"
+* Wait for element then click "betsPageAllOptionFirstBetToOpen"
+
+
+# Go to Home Page With Logo
+* Wait for element then click "goToHomePage"
+
+# Bet Rearrange
+* Elementine tıkla "betRearrange"
+* "10" saniye bekle
+
+# Go to Payment
+* Click to element "hamburgerMenu"
+* Click to element "goToPaymentPage"
+
+# Choose to Payment Method with <key>
+* Wait for element then click <key>
+
+# Genarete Random Deposit Value and Enter that value
+//* Genarete random number for "depositLowAmount" and "depositHighAmount", and saved the number "randomNumber"
+* Genarete random number for "depositLowAmount" and "depositHighAmount", and saved the number "randomNumber". And write the saved key to the "transactionAmount" element
+* Wait "2" seconds
+//* Find element by "depositAmount" and write the saved key "randomNumber" to element
+//* "600" textini "depositAmount" elemente yaz
+
+# Genarete Random Transaction Value and Enter that value
+* Genarete random number for "depositLowAmount" and "depositHighAmount" and "currentBalanceTransaction", and saved the number "randomNumber". And write the saved key to the "transactionAmount" element
+* Wait "2" seconds
+
+
+# Continue To Transaction
+* Wait for element then click "continueToTransaction"
+
+# Enter New Credit Card İnformation with <cardnumber>
+* Find element by "creditCardNumber" clear and send keys <cardnumber>
+* Find element by "ownerNameOfCard" clear and send keys "Test"
+* Elementine tıkla "newCardAdd"
+* Elementine tıkla "saveButton"
+* "5" saniye bekle
+* Elementine tıkla "saveButton"
+
+# Enter Credit Card İnformation with <cardnumber>, <cardownername> and <cvvNumber>
+* Wait "10" seconds
+* Write value <cardnumber> to element "creditCardNumber"
+//* Find element by "creditCardNumber" clear and send keys <cardnumber>
+//* Find element by "ownerNameOfCard" clear and send keys "Test"
+* Write value <cardownername> to element "ownerNameOfCard"
+* Write value <cvvNumber> to element "cvvField"
+* Pick the one of elements "optionsOfMonths" randomly
+* Pick the one of elements "optionsOfYears" randomly
+//* Wait for element then click "selectMonth"
+//* Wait for element then click "optionsOfMonths"
+//* Wait for element then click "selectYear"
+//* Wait for element then click "optionsOfYears"
+* Wait for element then click "continueButton"
+//* "continueButton" double clicked to the element
+
+# Enter Credit Card İnformation with <cardnumber>, <cardownername> and <cvvNumber> apco
+* Wait "10" seconds
+* Write value <cardnumber> to element "apcoCreditCard"
+//* Find element by "creditCardNumber" clear and send keys <cardnumber>
+//* Find element by "ownerNameOfCard" clear and send keys "Test"
+* Write value <cardownername> to element "apcoOwnerName"
+* Write value <cvvNumber> to element "apcoCvv"
+* Pick the one of elements "monthOptionsApco" randomly
+* Pick the one of elements "yearOptionsApco" randomly
+* Wait "10" seconds
+* Wait for element then click "submitBtnApco"
+
+# Select the Identity Type and Enter the Identity Number
+* Pick the one of elements "optionsOfIdentityTypeForMonnet" randomly
+* Find element by "identityNumberForMonnet" clear and send keys "111111111"
+
+
+# Select to the credit option for deposit method
+* Wait for element then click "creditoForMonnet"
+
+# Enter Credit Card İnformation with <cardnumber>, <cvvNumber> and <cardexpiration> monnet
+* Wait "10" seconds
+* Write value <cardnumber> to element "monnetCreditCard"
+* Write value <cvvNumber> to element "monnetCvv"
+* Write value <cardexpiration> to element "cardExpirationMonnet"
+* Wait "5" seconds
+* Wait for element then click "cuntinueButtonMonnet"
+* Wait "4" seconds
+* Wait for element then click "taksitButtonMonnet"
+* Wait for element then click "selectTaksitOptionMonnet"
+* Wait for element then click "allowTaksitOptionMonnet"
+* Wait "2" seconds
+* Wait for element then click "allowPaymentMonnet"
+* Wait "10" seconds
+//* Dismiss Chrome alert popup
+* Write value "111111111" to element "rutClient"
+* Write value "123" to element "claveClient"
+* Wait "2" seconds
+* Debug Step
+* Click to element "acceptPaymentLastPage"
+//* Wait for element then click "acceptPaymentLastPage"
+* Wait for element then click "continuePaymentLastPage"
+*Wait "15" seconds
+
+# Verify the deposit information and continue the main site
+* Wait for element then click "continueButtonOnLastDepositPage"
+
+# Go to Booking Page
+* Click to element "hamburgerMenu"
+* Click to element "goToBookingsPage"
+
+//# Check that the last payment is done
+
+# Go to Withdrawal Methods
+* Wait "2" seconds
+* Wait for element then click "openWithdrawalMethods"
+
+
+# Select the Bank Type and Enter the Account Number
+* Pick the one of elements "bankOptions" randomly excluding first option
+* Write value "4051 8856 0044 6623" to element "bankAccountNumber"
+
+# Select the Identity Type and Enter the Account Number
+* Pick the one of elements "identityTypeOptions" randomly excluding first option
+* Write value "111111111" to element "identityNumberForMonnet"
+
+# Go to Document Page
+* Click to element "hamburgerMenu"
+* Click to element "goToDocumentPage"
+
+#Select the Type of Identifier
+* Wait for element then click "selectTypeOfIdentifierToDocument"
+* Pick the one of elements "optionsOfIdentifier" randomly
+* Wait "2" seconds
+//* Select the one of elements "selectTypeOfIdentifierToDocument" randomly regarding "optionsOfIdentifier" size in the dropdown list
+//* Select the one of elements "selectTypeOfIdentifierToDocument" randomly in the dropdown list
+
+# Upload the File
+* Upload the file with "src/test/resources/file/Test.PNG" to the element "uploadDocumentButton"
+* Wait "2" seconds
+//* Upload the file to the element "uploadDocumentButton"
+
+
+# Upload Document on Betweb
+* Go to "https://test.texsportbet.com/en-gb" address
+* Click to element "switchToDesktop"
+* Wait "2" seconds
+* Click to element "gotItButton"
+* Check if element "loginBetweb" exists
+* Wait "2" seconds
+//* Elementine tıkla "gotItButton"
+* Click to element "loginBetweb"
+* Write value "beliztest" to element "nameBetweb"
+* Write value "password1" to element "lastnameBetweb"
+* Click to element "loginBtnBetweb"
+* Hover element by "accountMenuBetweb"
+* Click to element "myAccountBetweb"
+* Click to element "documentPageBetweb"
+* Upload the file to the element "chooseTheFileBetweb"
+* Wait "2" seconds
+* Click to element "uploadDocumentBetweb"
+
+
+
+# Select The Value In Dropdown List Test
+* Select the one of elements "dropdownListTest" randomly regarding "optionsOfTest" size in the dropdown list
+
+# Go to Bet Settings Page
+* Click to element "hamburgerMenu"
+* Wait for element then click "goToProfilePage"
+* Wait "2" seconds
+* Wait for element then click "goToBetSettingsPage"
+
+# Set the Odd Values In Bet Settings
+* Wait for element then click "oddValueChangesSelect"
+* Wait "2" seconds
+* Pick the one of elements "oddValueChangesOptions" randomly
+* Wait "2" seconds
+
+# Set the Cashout Amount In Bet Settings
+//* Wait for element then click "cashoutAmountChangesSelect"
+* Pick the one of elements "cashoutAmountChangesOptions" randomly
+* Wait "2" seconds
+
+# Enter the Default Stake Value
+* Write value "30" to element "defaultStake"
+
+# Save The Settings
+* Wait for element then click "nextBtn"
+* Wait "2" seconds
+
+# Verify that the bet settings are saved
+* Find element by "assersionOfSaveFunction" and verify that text of element equals to "Your settings have been saved."
+
+
