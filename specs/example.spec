@@ -77,7 +77,8 @@ tags:makeDepositWithAccentInMethod
 * Choose to Payment Method with "depositAccentInMethod"
 * Genarete Random Deposit Value and Enter that value
 * Continue To Transaction
-* Enter Credit Card İnformation with "4000000000000077", "Test Test" and "123"
+* Enter Credit Card İnformation with "4051885600446623", "Test Test" and "123"
+
 //* Verify the deposit information and continue the main site
 //* Go to Booking Page
 
@@ -93,16 +94,47 @@ tags:makeDepositWithApcoMethod
 //* Go to Booking Page
 
 
-## Make Deposite With Monnet Method
+## Make Deposite With Monnet Card Method
 tags:makeDepositWithMonnetMethod
 * Go to QA Env
 * Go to Payment
-* Choose to Payment Method with "monnetMethod"
+* Choose to Payment Method with "monnetCardMethod"
 * Genarete Random Deposit Value and Enter that value
 * Select the Identity Type and Enter the Identity Number
 * Continue To Transaction
 * Select to the credit option for deposit method
 * Enter Credit Card İnformation with "4051 8856 0044 6623", "123" and "1224" monnet
+* Select to the installment option
+* Enter Rut and Clave info at Welcome of TransBank page
+* Accept the option on TransBank page to be done the payment
+
+## Make Deposite With Monnet Debit Method
+tags:makeDepositWithMonnetDebitMethod
+* Go to QA Env
+* Go to Payment
+* Choose to Payment Method with "monnetCardMethod"
+* Genarete Random Deposit Value and Enter that value
+* Select the Identity Type and Enter the Identity Number
+* Continue To Transaction
+* Compare the deposit amount "randomNumber" to the value in payment method "paymentValue" by replaced text "depositAmountInThirdPartForMonnetDebitMethod"
+* Select to the "debitOptionForMonnet" option for deposit method
+* Select the bank option and enter bank card info "4051 8856 0044 6623" for debit
+* Enter Rut and Clave info at Welcome of TransBank page
+* Accept the option on TransBank page to be done the payment
+
+
+## Make Deposite With Monnet Bank Transfer Method
+tags:makeDepositWithMonnetBankTransferMethod
+* Go to QA Env
+* Go to Payment
+* Choose to Payment Method with "monnetBankMethod"
+* Genarete Random Deposit Value and Enter that value
+* Select the Identity Type and Enter the Identity Number
+* Continue To Transaction
+* Compare the deposit amount "randomNumber" to the value in payment method "paymentValue" by replaced text "depositAmountInThirdPartForMonnetBankMethod"
+* Select the bank option for Monnet Bank Method
+
+
 
 ## Make Withdrawal With Monnet Method
 tags:makeWithdrawalWithMonnetMethod
@@ -115,6 +147,19 @@ tags:makeWithdrawalWithMonnetMethod
 * Select the Identity Type and Enter the Account Number
 * Continue To Transaction
 
+## Make Withdrawal With APS Method
+tags:makeWithdrawalWithAPSMethod
+* Go to QA Env
+* Go to Payment
+* Go to Withdrawal Methods
+* Choose to Payment Method with "apsWithdrawalMethods"
+* Genarete Random Transaction Value and Enter that value
+* Select the Bank Type and Enter the Account Number
+* Select the Identity Type and Enter the Account Number
+* Continue To Transaction
+* Compare the entered withdrawal amount same with amount which inside the transactions info
+* Go to Booking Page
+* Compare the transactions number which both in the transaction page and also the booking page
 
 
 ## Upload Document

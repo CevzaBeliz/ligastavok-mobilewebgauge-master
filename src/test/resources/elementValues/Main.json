@@ -95,6 +95,11 @@
   "type": "css"
 },
   {
+    "key": "loginButtonInHamburgerMenu",
+    "value": "div[class='sw-listitem sw-mnmv-item sw-mnmv-item_account_login']",
+    "type": "css"
+  },
+  {
     "key": "loginButton",
     "value": "a[class='tsb-btns--login']",
     "type": "css"
@@ -115,6 +120,11 @@
     "type": "css"
   },
   {
+    "key": "firstBookingItem",
+    "value": "//div[@class='sw-civ sw-accv-cbl-cbiv sw-civ-open'][1]//div[@class='sw-accv-cbl-cbitv-type']",
+    "type": "xpath"
+  },
+  {
   "key": "assertLoginName",
   "value": "div[class='sw-mh-name']",
   "type": "css"
@@ -122,6 +132,11 @@
   {
     "key": "hamburgerMenu",
     "value": "div[class='sw-mh-mb']",
+    "type": "css"
+  },
+  {
+    "key": "usernameInBalanceArea",
+    "value": "div[class='sw-mh-name']",
     "type": "css"
   },
   {
@@ -335,6 +350,91 @@
     "type": "css"
   },
   {
+    "key": "transactionMessageForWithdrawal",
+    "value": "div[class='tv sw-payv-waitingapproval-infol2']",
+    "type": "css"
+  },
+  {
+    "key": "transactionNumberWithdrawal",
+    "value": "div[class='tv value']",
+    "type": "css"
+  },
+  {
+  "key": "debitOptionForMonnet",
+  "value": "button[id='debito']",
+  "type": "css"
+  },
+  {
+    "key": "depositAmountInThirdPartForMonnetDebitMethod",
+    "value": "h5[class='amount']",
+    "type": "css"
+  },
+  {
+    "key": "bankOptionForDebitMonnet",
+    "value": "//li[@_ngcontent-c20]//button[@_ngcontent-c20]//div[@class='issuer-logo']",
+    "type": "xpath"
+  },
+  {
+    "key": "bankListForDebitMonnet",
+    "value": "button[class='combobox-button']",
+    "type": "css"
+  },
+  {
+    "key": "cardNumberForDebitMonnet",
+    "value": "input[id='pan']",
+    "type": "css"
+  },
+  {
+    "key": "pagarButtonToContinuePayment",
+    "value": "button[class='submit']",
+    "type": "css"
+  },
+  {
+    "key": "depositAmountInThirdPartForMonnetBankMethod",
+    "value": "p[class='h-text-price']",
+    "type": "css"
+  },
+  {
+    "key": "bankOptionForBankMonnet",
+    "value": "//p[text()='Banco de prueba']",
+    "type": "xpath"
+  },
+  {
+    "key": "rutInfoForBankMonnet",
+    "value": "span[class='input-placeholder  ']",
+    "type": "css"
+  },
+  {
+    "key": "passwordForBankMonnet",
+    "value": "input[type='password']",
+    "type": "css"
+  },
+  {
+    "key": "continueToPaymentPageBankMonnet",
+    "value": "div[class='custom-button-container  ']",
+    "type": "css"
+  },
+  {
+    "key": "activationCodeForMonnetBankMethod1",
+    "value": "//div[@class='is-input-wrapper'][1]//input[@type='password']",
+    "type": "xpath"
+  },
+  {
+    "key": "activationCodeForMonnetBankMethod2",
+    "value": "//div[@class='is-input-wrapper'][2]//input[@type='password']",
+    "type": "xpath"
+  },
+  {
+    "key": "activationCodeContainerForMonnetBankMethod",
+    "value": "div[class='is-container ']",
+    "type": "css"
+  },
+  {
+    "key": "activationCodeWrapperForMonnetBankMethod",
+    "value": "div[class='is-wrapper']",
+    "type": "css"
+  },
+  {
     "key": "creditCardNumber",
     "value": "input[name='PaymentData[pan]']",
     "type": "css"
@@ -456,8 +556,12 @@
     "value": "input[name='btnSubmit']",
     "type": "css"
   },
-  {"key": "monnetMethod",
+  {"key": "monnetCardMethod",
     "value": "div[title='Monnet Card In via Monnet Card']",
+    "type": "css"
+  },
+  {"key": "monnetBankMethod",
+    "value": "div[title='Monnet Bank In via Monnet Bank']",
     "type": "css"
   },
   {"key": "optionsOfIdentityTypeForMonnet",
@@ -488,15 +592,15 @@
     "value": "button[class='next']",
     "type": "css"
   },
-  {"key": "taksitButtonMonnet",
+  {"key": "installmentButtonMonnet",
     "value": "button[class='combobox-button']",
     "type": "css"
   },
-  {"key": "selectTaksitOptionMonnet",
+  {"key": "selectInstallmentOptionMonnet",
     "value": "//span[text()='Sin Cuotas']",
     "type": "xpath"
   },
-  {"key": "allowTaksitOptionMonnet",
+  {"key": "allowInstallmentOptionMonnet",
     "value": "//button[contains(text(), 'Confirmar')]",
     "type": "xpath"
   },
@@ -513,8 +617,8 @@
     "type": "id"
   },
   {"key": "acceptPaymentLastPage",
-    "value": "//input[@type='submit'][@value='Aceptar']",
-    "type": "xpath"
+    "value": "input[type='submit']",
+    "type": "css"
   },
   {"key": "continuePaymentLastPage",
     "value": "input[value='Continuar']",
@@ -526,6 +630,10 @@
   },
   {"key": "monnetWithdrawalMethods",
     "value": "div[title='Monnet Bank Out via Monnet Bank']",
+    "type": "css"
+  },
+  {"key": "apsWithdrawalMethods",
+    "value": "div[title='APS Bank Out via APS Bank']",
     "type": "css"
   },
   {"key": "bankOptions",
@@ -543,6 +651,10 @@
   {"key": "currentBalanceTransaction",
     "value": "//div[@class='sw-payv-info-line sw-payfv-info-line-pa']//div[@class='tv value']",
     "type": "xpath"
+  },
+  {"key": "imageOfMonnetTransaction",
+    "value": "img[src='images/transbank.gif']",
+    "type": "css"
   }
 
 ]

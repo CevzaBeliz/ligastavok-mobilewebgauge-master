@@ -50,19 +50,24 @@ public class BaseTest {
 
         //options.setExperimentalOption("excludeSwitches",Arrays.asList("disable-popup-blocking"));
 
-        Map<String, Object> prefs = new HashMap<String, Object>();
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
+//        Map<String, Object> prefs = new HashMap<String, Object>();
+//        prefs.put("credentials_enable_service", false);
+//        prefs.put("profile.password_manager_enabled", false);
 
-        options.setExperimentalOption("prefs", prefs);
-
+        options.addArguments("--disable-extensions", "test-type",
+                "no-default-browser-check", "ignore-certificate-errors",
+                "--disable-notifications",
+                "--disable-offer-store-unmasked-wallet-cards",
+                "--disable-autofill-keyboard-accessory-view");
+        options.addArguments("--disable-translate");
 
         if (StringUtils.isEmpty(System.getenv("key")))
         {
             System.out.println("LOCAL");
             if ("android".equalsIgnoreCase(selectPlatform)) {
                 System.out.println("android");
-               // Map<String, Object> prefs = new HashMap<String, Object>();
+                Map<String, Object> prefs = new HashMap<String, Object>();
+                options.setExperimentalOption("prefs", prefs);
                 prefs.put("profile.default_content_setting_values.notifications", 2);
                 capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, BrowserType.CHROME);
                 capabilities.setCapability(MobileCapabilityType.PLATFORM, Platform.ANDROID);

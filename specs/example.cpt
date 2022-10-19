@@ -26,11 +26,13 @@ This is a concept file with following syntax for each concept.
 
 # Go to QA Env
 * Go to "https://m-test.texsportbet.com/en-gb" address
-* Check if element "loginButton" exists
-* Check if element "registerButton" exists
+* Assert that the text of element "usernameInBalanceArea" is null
+//* Check if element "loginButton" exists
+//* Check if element "registerButton" exists
 * Wait "2" seconds
 //* Elementine tıkla "gotItButton"
-* Click to element "loginButton"
+* Wait for element then click "hamburgerMenu"
+* Wait for element then click "loginButtonInHamburgerMenu"
 * Write value "beliztest" to element "loginUserNameArea"
 * Write value "password1" to element "loginPasswordArea"
 * Click to element "loginButtonArea"
@@ -224,7 +226,7 @@ This is a concept file with following syntax for each concept.
 # Genarete Random Deposit Value and Enter that value
 //* Genarete random number for "depositLowAmount" and "depositHighAmount", and saved the number "randomNumber"
 * Genarete random number for "depositLowAmount" and "depositHighAmount", and saved the number "randomNumber". And write the saved key to the "transactionAmount" element
-* Wait "2" seconds
+* Wait "5" seconds
 //* Find element by "depositAmount" and write the saved key "randomNumber" to element
 //* "600" textini "depositAmount" elemente yaz
 
@@ -232,9 +234,11 @@ This is a concept file with following syntax for each concept.
 * Genarete random number for "depositLowAmount" and "depositHighAmount" and "currentBalanceTransaction", and saved the number "randomNumber". And write the saved key to the "transactionAmount" element
 * Wait "2" seconds
 
-
 # Continue To Transaction
-* Wait for element then click "continueToTransaction"
+* Wait "2" seconds
+* Click to the defined element with "continueToTransaction"
+//* Wait for element then click "continueToTransaction"
+* Wait "15" seconds
 
 # Enter New Credit Card İnformation with <cardnumber>
 * Find element by "creditCardNumber" clear and send keys <cardnumber>
@@ -249,16 +253,14 @@ This is a concept file with following syntax for each concept.
 * Write value <cardnumber> to element "creditCardNumber"
 //* Find element by "creditCardNumber" clear and send keys <cardnumber>
 //* Find element by "ownerNameOfCard" clear and send keys "Test"
+* Wait "2" seconds
 * Write value <cardownername> to element "ownerNameOfCard"
 * Write value <cvvNumber> to element "cvvField"
 * Pick the one of elements "optionsOfMonths" randomly
 * Pick the one of elements "optionsOfYears" randomly
-//* Wait for element then click "selectMonth"
-//* Wait for element then click "optionsOfMonths"
-//* Wait for element then click "selectYear"
-//* Wait for element then click "optionsOfYears"
 * Wait for element then click "continueButton"
-//* "continueButton" double clicked to the element
+* Wait "10" seconds
+
 
 # Enter Credit Card İnformation with <cardnumber>, <cardownername> and <cvvNumber> apco
 * Wait "10" seconds
@@ -274,11 +276,52 @@ This is a concept file with following syntax for each concept.
 
 # Select the Identity Type and Enter the Identity Number
 * Pick the one of elements "optionsOfIdentityTypeForMonnet" randomly
-* Find element by "identityNumberForMonnet" clear and send keys "111111111"
+* Find element by "identityNumberForMonnet" clear and send keys "111111211"
 
 
 # Select to the credit option for deposit method
 * Wait for element then click "creditoForMonnet"
+
+# Select to the <paymet> option for deposit method
+* Wait for element then click <paymet>
+
+# Select the bank option and enter bank card info <cardnumber> for debit
+* Wait for element then click "bankListForDebitMonnet"
+* Wait "2" seconds
+* Pick the one of elements "bankOptionForDebitMonnet" randomly
+* Write value <cardnumber> to element "cardNumberForDebitMonnet"
+* Wait for element then click "pagarButtonToContinuePayment"
+
+# Compare the deposit amount <saveKey> to the value in payment method <saveKeyy> by replaced text <key>
+* Get text by <key> and replace the symbols than save the text <saveKeyy>
+* Compare saved key <saveKey> contains the other saved key <saveKeyy> of element
+
+# Select the bank option for Monnet Bank Method
+* Wait "2" seconds
+* scroll to the element "bankOptionForBankMonnet" be visible
+* Wait for element then click "bankOptionForBankMonnet"
+//* Find element by "rutInfoForBankMonnet" clear and send keys "111111111"
+* Wait "2" seconds
+* Write value "111111111" to element "rutInfoForBankMonnet", if the element exists
+* Write value "1234" to element "passwordForBankMonnet"
+* Wait for element then click "continueToPaymentPageBankMonnet"
+* Wait "10" seconds
+* Wait for element then click "continueToPaymentPageBankMonnet"
+* Wait "6" seconds
+//* Write value "1" to element "activationCodeForMonnetBankMethod1"
+* Send the text to the defined Activation Code field with "activationCodeWrapperForMonnetBankMethod"
+* Wait for element then click "continueToPaymentPageBankMonnet"
+
+# Enter Rut and Clave info at Welcome of TransBank page
+* Write value "111111111" to element "rutClient"
+* Write value "123" to element "claveClient"
+* Wait "2" seconds
+* Debug Step
+* Click to the defined element with "acceptPaymentLastPage"
+
+# Accept the option on TransBank page to be done the payment
+* Wait for element then click "continuePaymentLastPage"
+* Wait "25" seconds
 
 # Enter Credit Card İnformation with <cardnumber>, <cvvNumber> and <cardexpiration> monnet
 * Wait "10" seconds
@@ -288,21 +331,21 @@ This is a concept file with following syntax for each concept.
 * Wait "5" seconds
 * Wait for element then click "cuntinueButtonMonnet"
 * Wait "4" seconds
-* Wait for element then click "taksitButtonMonnet"
-* Wait for element then click "selectTaksitOptionMonnet"
-* Wait for element then click "allowTaksitOptionMonnet"
+
+#Select to the installment option
+* Wait for element then click "installmentButtonMonnet"
+* Wait for element then click "selectInstallmentOptionMonnet"
+* Wait for element then click "allowInstallmentOptionMonnet"
 * Wait "2" seconds
 * Wait for element then click "allowPaymentMonnet"
 * Wait "10" seconds
-//* Dismiss Chrome alert popup
-* Write value "111111111" to element "rutClient"
-* Write value "123" to element "claveClient"
-* Wait "2" seconds
-* Debug Step
-* Click to element "acceptPaymentLastPage"
-//* Wait for element then click "acceptPaymentLastPage"
-* Wait for element then click "continuePaymentLastPage"
-*Wait "15" seconds
+//* Write value "111111111" to element "rutClient"
+//* Write value "123" to element "claveClient"
+//* Wait "2" seconds
+//* Debug Step
+//* Click to the defined element with "acceptPaymentLastPage"
+//* Wait for element then click "continuePaymentLastPage"
+//* Wait "15" seconds
 
 # Verify the deposit information and continue the main site
 * Wait for element then click "continueButtonOnLastDepositPage"
@@ -325,6 +368,16 @@ This is a concept file with following syntax for each concept.
 # Select the Identity Type and Enter the Account Number
 * Pick the one of elements "identityTypeOptions" randomly excluding first option
 * Write value "111111111" to element "identityNumberForMonnet"
+
+# Compare the entered withdrawal amount same with amount which inside the transactions info
+//* Save "transactionAmountInText" the replaced value "transactionMessageForWithdrawal" inside the text
+//* Compare saved key "transactionAmountInText" contains the other saved key "randomNumber" of element
+//* Find element by "transactionMessageForWithdrawal" and compare saved key "randomNumber" contains the text of element
+* Find element by "transactionNumberWithdrawal" and save text "transactionNumberInWithdrawalPage"
+* Wait for element then click "loginButtonArea"
+
+# Compare the transactions number which both in the transaction page and also the booking page
+* Find element by "firstBookingItem" and compare saved key "transactionNumberInWithdrawalPage" contains the text of element
 
 # Go to Document Page
 * Click to element "hamburgerMenu"

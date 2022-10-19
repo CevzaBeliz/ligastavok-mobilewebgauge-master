@@ -15,8 +15,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.LoggerFactory;
 import org.slf4j.impl.Log4jLoggerAdapter;
 
+import java.sql.Array;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -113,6 +115,7 @@ public class BaseSteps extends BaseTest {
         }
 
         return stringRandom;
+        
     }
 
     public WebElement findElementWithKey(String key) {
@@ -180,8 +183,7 @@ public class BaseSteps extends BaseTest {
     }
 
     @Step({"Wait for element then click <key>",
-            "Elementi b" +
-                    "ekle ve sonra tıkla <key>"})
+            "Elementi ekle ve sonra tıkla <key>"})
     public void checkElementExistsThenClick(String key) {
         getElementWithKeyIfExists(key);
         clickElement(key);
@@ -477,7 +479,7 @@ public class BaseSteps extends BaseTest {
     @Step({"Clear text of element <key>",
             "<key> elementinin text alanını temizle"})
     public void clearInputArea(String key) {
-        findElement(key).clear();
+        getElementWithKeyIfExists(key).clear();
     }
 
     @Step({"Clear text of element <key> with BACKSPACE",
@@ -615,13 +617,16 @@ public class BaseSteps extends BaseTest {
         scrollTo(x,y);
     }
 
-    public WebElement scrollToElementToBeVisible(String key) {
+    public void scrollToElementToBeVisible(String key) {
         ElementInfo elementInfo = StoreHelper.INSTANCE.findElementInfoByKey(key);
         WebElement webElement = webDriver.findElement(ElementHelper.getElementInfoToBy(elementInfo));
-        if (webElement != null) {
-            scrollTo(webElement.getLocation().getX(), webElement.getLocation().getY() - 70);
-        }
-        return webElement;
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        //This will scroll the page till the element is found
+        js.executeScript("arguments[0].scrollIntoView();", webElement);
+
+//        if (webElement != null) {
+//            scrollTo(webElement.getLocation().getX(), webElement.getLocation().getY() - 70);
+//        }
     }
 
 
@@ -631,6 +636,8 @@ public class BaseSteps extends BaseTest {
     public void scrollToElement(String key) {
         scrollToElementToBeVisible(key);
     }
+
+
 
 
     @Step({"<key> alanına js ile kaydır"})
@@ -741,6 +748,17 @@ public class BaseSteps extends BaseTest {
     }
 
 
+
+    @Step({"<saveKey> değeri <saveKeyy> saklanan değerini içeriyor mu kontrol et",
+            "Compare saved key <saveKey> contains the other saved key <saveKeyy> of element"})
+    public void equalsSaveTextByOtherSaveTextContain(String saveKey, String saveKeyy) {
+        String savedRandom = StoreHelper.INSTANCE.getValue(saveKey);
+        logger.info("saved random: " + savedRandom);
+        String paymentValueInThirdPart = StoreHelper.INSTANCE.getValue(saveKeyy);
+        logger.info("payment value: " + paymentValueInThirdPart);
+        Assert.assertTrue(savedRandom.contains(paymentValueInThirdPart));
+    }
+
     @Step({"<key> li elementi bul ve değerini <saveKey> saklanan değer ile karşılaştır ve değişiklik oldugunu dogrula",
             "Find element by <key> and compare saved key <saveKey> and verified that there is differance"})
     public void equalsSaveTextByKeyNotequal(String key, String saveKey) {
@@ -750,7 +768,8 @@ public class BaseSteps extends BaseTest {
     @Step({"<key> li elementi bul, temizle ve <text> değerini yaz",
             "Find element by <key> clear and send keys <text>"})
     public void sendKeysByKey(String key, String text) {
-        WebElement webElement = findElement(key);
+        //WebElement webElement = findElement(key);
+        WebElement webElement = getElementWithKeyIfExists(key);
         webElement.clear();
         webElement.sendKeys(text);
         logger.info("the text is written: " +"'" + text + "'");
@@ -1166,46 +1185,6 @@ public class BaseSteps extends BaseTest {
         }
     }
 
-    @Step("Siparis durmunu <key> elementli kartla <kartDurumu> ve <keyToCompare> elementini kullanarak karsilastir")
-    public void SiparisDurumuKarsilastir(String key, String kartDurumu, String keyToCompare) throws InterruptedException {
-        WebElement webElement1 = findElement(key);
-        WebElement webElement = findElement(kartDurumu);
-        logger.info(" webelement bulundu");
-        String tedarikDurumuKart = webElement.getText();
-        logger.info(tedarikDurumuKart + " texti bulundu");
-        webElement1.click();
-        Thread.sleep(10000);
-        logger.info(" webelement1 tıklandı");
-        WebElement cardDetail = findElement(keyToCompare);
-        logger.info("cardDetail elementi bulundu");
-        String tedarikDurumuDetay = cardDetail.getText();
-        logger.info(tedarikDurumuDetay + " texti bulundu");
-        Assert.assertTrue(tedarikDurumuKart.equals(tedarikDurumuDetay));
-        logger.info(tedarikDurumuKart + " textiyle " + tedarikDurumuDetay + " texti karşılaştırıldı.");
-    }
-
-    @Step("<IlkKart> in icerdiği <key> elementiyle <keyToCompare> elementini seferlerim icin karsilastir")
-    public void SeferlerimTalepNumarasıKarsilastir(String IlkKart, String key, String keyToCompare) throws InterruptedException {
-        logger.info(IlkKart + " " + key + " " + keyToCompare + " texti bulundu");
-        Thread.sleep(4000);
-        WebElement webElement = findElement(key);
-        String firstCardTalepNo = webElement.getText();
-        logger.info(firstCardTalepNo + " texti bulundu");
-        firstCardTalepNo = firstCardTalepNo.substring(9, 19);
-        logger.info(firstCardTalepNo + " texti bulundu");
-        WebElement ilkKartElement = findElement(IlkKart);
-        ilkKartElement.click();
-        logger.info(" tıklandı bulundu ");
-        Thread.sleep(4000);
-        WebElement cardDetail = findElement(keyToCompare);
-        String detailPage = cardDetail.getText();
-        String compareText = detailPage.substring(14, 24);
-        System.out.println(firstCardTalepNo);
-        System.out.println(compareText);
-        Assert.assertTrue(firstCardTalepNo.equals(compareText));
-        logger.info(firstCardTalepNo + " textiyle " + compareText + " texti karşılaştırıldı.");
-    }
-
     @Step("<text> textini <key> elemente tek tek yaz")
     public void sendKeyOneByOne(String text, String key) throws InterruptedException {
 
@@ -1217,26 +1196,6 @@ public class BaseSteps extends BaseTest {
             Thread.sleep(10);
             logger.info(key + " elementine " + text + " texti karakterler tek tek girlilerek yazıldı.");
         }
-    }
-
-    @Step("<key> elementiyle <cardDetail> elemetindeki <keyToCompare> textini karsilastir")
-    public void AracTalepleriTalepNumarasıKarsilastir(String key, String cardDetail, String keyToCompare) throws InterruptedException {
-        WebElement webelement = findElement(key);
-        String cardTalepNo = webelement.getText();
-        logger.info(cardTalepNo + " texti bulundu ");
-        cardTalepNo = cardTalepNo.substring(32, 44);
-        logger.info(cardTalepNo + " texti bulundu ");
-        WebElement webelement1 = findElement(cardDetail);
-        webelement1.click();
-        logger.info(" tıklandı bulundu ");
-        Thread.sleep(4000);
-        WebElement detail = findElement(keyToCompare);
-        String detailPage = detail.getText();
-        String compareText = detailPage.substring(15, 28);
-        System.out.println(cardTalepNo);
-        System.out.println(compareText);
-        Assert.assertTrue(compareText.contains(cardTalepNo));
-        logger.info(cardTalepNo + " textiyle " + compareText + " texti karşılaştırıldı.");
     }
 
     @Step("<key> tarihinden 2 gün sonraya al")
@@ -1363,7 +1322,7 @@ public void  searchKeyy(String key) throws InterruptedException {
         List<WebElement> elements = findElements(keys); //Get all options
         int index = 0; //if list contains only one element it will take that element
         Random rand = new Random();
-        index = rand.nextInt(elements.size() - 1);
+        index = rand.nextInt(elements.size());
         String value = elements.get(index).getText();
         if(elements.size()>1){
             //Get a random number between 1, size of elements
@@ -1573,40 +1532,32 @@ public void  searchKeyy(String key) throws InterruptedException {
         logger.info("String High Value: " + highValue);
        // String currentWithComma = current.getText().replaceAll("[^0-9]", "");
         String currentValueWithString = current.getText().replace(" CLP", "");
-       int currentValueInt = 0;
-       try {
-            currentValueInt = Integer.valueOf(currentValueWithString);
-       }catch (NumberFormatException nfe){
-           nfe.printStackTrace();
-       }
-       double currentValueDouble = Double.valueOf(currentValueInt);
-        double currentDouble =  Math.round(currentValueDouble*100)/100;
-        logger.info("Double Current Value: " + currentDouble);
-        int currentWithComma = (int) currentDouble;
-        logger.info("String Current Value with Comma: " + currentWithComma);
-       // String currentValue = currentWithComma.replace(",", "");
-        //logger.info("String Current Value: " + currentValue);
+        String currentValueWithoutComma = currentValueWithString.replace(",", "");
+        logger.info("String Current Value: " + currentValueWithoutComma);
+        Float floatValue=Float.parseFloat(currentValueWithoutComma);
+        DecimalFormat df = new DecimalFormat("0");
+        df.setMaximumFractionDigits(0);
+        String formatedStringValue = df.format(floatValue);
+        logger.info("liters of petrol before putting in editor : "+formatedStringValue);
+        int intCurrent = (int) Math.floor(Double.parseDouble(formatedStringValue)) ;
+        logger.info("String Current Value with Comma: " + intCurrent);
         int lowNumber= Integer.parseInt(lowValue);
         logger.info("lowNumber: " + lowNumber);
         int highNumber = Integer.parseInt(highValue);
         logger.info("highNumber: " + highNumber);
-       // int currentNumber = Integer.parseInt(currentValue);
-        //logger.info("currentNumber: " + currentNumber);
 
         Random random = new Random();
         int result;
-     //   if (currentNumber > highNumber){
-        if (currentWithComma > highNumber){
+        if (intCurrent > highNumber){
         result = random.nextInt(highNumber-lowNumber) + lowNumber;
         logger.info("random number: " + result);}
         else {
-           // result = random.nextInt(currentNumber-lowNumber) + lowNumber;
-            result = random.nextInt(currentWithComma-lowNumber) + lowNumber;
+            result = random.nextInt(intCurrent-lowNumber) + lowNumber;
         }
         // element.sendKeys(String.valueOf(result));
         return result;
-
     }
+
     @Step({"Genarete random number for <key> and <keys> and <keyed>, and saved the number <saveKey>. And write the saved key to the <keyy> element"})
     public void pickSaveMore(String key, String keys, String keyed, String saveKey, String keyy){
         int randomNumber = randomIntGenerateNumberWith(key, keys, keyed);
@@ -1618,5 +1569,73 @@ public void  searchKeyy(String key) throws InterruptedException {
         element.sendKeys(StoreHelper.INSTANCE.getValue(saveKey));
         //webElement.sendKeys(StoreHelper.INSTANCE.getValue(saveKey));
     }
+
+    @Step({"<key> ile tanımlanan elemente tıkla",
+            "Click to the defined element with <key>"})
+    public void clickValue(String key) {
+        WebElement element = findElement(key);
+        JavascriptExecutor executor = (JavascriptExecutor)webDriver;
+        executor.executeScript("arguments[0].click();", element);
+    }
+
+    @Step({"Get text by <key> and replace the symbols than save the text <saveKeyy>"})
+    public void replaceSomeValue(String key, String saveKeyy){
+        WebElement element = getElementWithKeyIfExists(key);
+        String replacedFrom$ = element.getText().replace("$","");
+        logger.info("Replaced element: " + replacedFrom$);
+        String replacedElement = replacedFrom$.replace(".","");
+        logger.info("Replaced element: " + replacedElement);
+        StoreHelper.INSTANCE.saveValue(saveKeyy, replacedElement);
+        logger.info("saveKey for genareted random number: " + saveKeyy);
+    }
+
+    @Step({"<key> ile tanımlanan elemente Js ile değer yazdır",
+            "Send the text to the defined RUT field with <key>"})
+    public void sendTextWithJs(String key){
+        WebElement userNameTxt = findElement(key);
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
+        // set the text
+        jsExecutor.executeScript("arguments[0].value='11.111.111-1'", userNameTxt);
+    }
+
+    @Step({"<key> ile tanımlanan Aktivasyon Kodu alanına Js ile değer yazdır",
+            "Send the text to the defined Activation Code field with <key>"})
+    public void sendTextWithJs2(String key){
+        WebElement userNameTxt = findElement(key);
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
+        // set the text
+        jsExecutor.executeScript("arguments[0].value='12345678'", userNameTxt);
+    }
+
+    @Step({"Assert that the text of element <key> is null"})
+     public void assertionOfElement(String key){
+        WebElement element = findElement(key);
+         if (element.getText().isEmpty() || element.getText().equals("")) {
+             System.out.println("Test case should be pass");
+         }
+         else {
+             System.out.println("Test case should be fail.");
+         }
+     }
+
+    @Step("Save <saved> the replaced value <key> inside the text")
+    public void replaceTheRemainigValueAndSave(String key, String saved) {
+        String element = getElementText(key);
+        logger.info(element);
+        String element2= element.replace(",", "");
+        String elementWithoutComma = element2.replaceAll("[^0-9]","");
+        logger.info(elementWithoutComma);
+//        String element = getElementText(key).replaceAll("[^0-9]","");
+        StoreHelper.INSTANCE.saveValue(saved, elementWithoutComma);
+    }
+
+    @Step({"Write value <text> to element <key>, if the element exists"})
+    public void sendKeysToExistElement(String text, String key) {
+        WebElement element= getElementWithKeyIfExists(key);
+        if (element.getText().equals("RUT de la cuenta bancaria con que pagarás")){
+        findElement(key).sendKeys(text);
+        logger.info("'" +text+ "' text is written to the '" +key + "' element.");}
+    }
+
 }
 
